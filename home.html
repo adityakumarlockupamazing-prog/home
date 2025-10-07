@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MRCET CAMPUS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: skyblue;
+            text-align: center;
+        }
+        .header-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-bottom: 2px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin: 0;
+        }
+        .container {
+            display: flex;
+            justify-content: flex-start; /* Aligns content to the left */
+            align-items: flex-start;
+            padding: 20px;
+            gap: 20px;
+        }
+        .main-content {
+            flex-grow: 1;
+        }
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+        }
+        .image-block {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .image-block input[type="file"] {
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            padding: 5px;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        .image-block label {
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .image-block img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            border: 1px solid #eee;
+            margin-bottom: 10px;
+            display: none;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .ar-button {
+            background-color: #4CAF50; /* Green */
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<div class="header-container">
+    <h1>Welcome to MRCET CAMPUS</h1>
+</div>
+
+<div class="container">
+    <div class="main-content">
+        <h2>Upload Images of Campus Buildings</h2>
+        <div class="image-gallery">
+            <div class="image-block">
+                <label for="block1">AERO BLOCK</label>
+                <input type="file" id="block1" accept="image/*">
+                <img id="preview1" src="" alt="Image of Main Building">
+            </div>
+            <div class="image-block">
+                <label for="block2">CSE BLOCK</label>
+                <input type="file" id="block2" accept="image/*">
+                <img id="preview2" src="" alt="Image of Library">
+            </div>
+            <div class="image-block">
+                <label for="block3">IT Block</label>
+                <input type="file" id="block3" accept="image/*">
+                <img id="preview3" src="" alt="Image of Engineering Block">
+            </div>
+            <div class="image-block">
+                <label for="block4">Auditorium</label>
+                <input type="file" id="block4" accept="image/*">
+                <img id="preview4" src="" alt="Image of Auditorium">
+            </div>
+            <div class="image-block">
+                <label for="block5">Canteen</label>
+                <input type="file" id="block5" accept="image/*">
+                <img id="preview5" src="" alt="Image of Canteen">
+            </div>
+            <div class="image-block">
+                <label for="block6">Sports Complex</label>
+                <input type="file" id="block6" accept="image/*">
+                <img id="preview6" src="" alt="Image of Sports Complex">
+            </div>
+        </div>
+    </div>
+
+    <div class="button-container">
+        <a href="https://adityakumarlockupamazing-prog.github.io/campus-ar-navigator2/" class="ar-button">Let's view the campus in AR</a>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('input[type="file"]').forEach(input => {
+        input.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const previewId = 'preview' + this.id.replace('block', '');
+            const previewImage = document.getElementById(previewId);
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    previewImage.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                previewImage.src = '';
+                previewImage.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
